@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"inverse-on-surface": "#2e3034", surface: "#111317", "primary-container": "#820ad1", "surface-container-lowest": "#0c0e12", error: "#ffb4ab", "surface-container": "#1e2023", "primary-fixed": "#f2daff", "secondary-fixed": "#e4e2e4", "on-surface": "#e2e2e7", "on-background": "#e2e2e7", "on-primary-fixed-variant": "#6b00af", "surface-bright": "#37393d", "tertiary-container": "#844800", secondary: "#c8c6c8", "on-error-container": "#ffdad6", "inverse-primary": "#8a1dd9", "on-secondary-fixed-variant": "#474649", tertiary: "#ffb779", outline: "#998ca0", "surface-variant": "#333539", "secondary-fixed-dim": "#c8c6c8", "on-tertiary": "#4c2700", "error-container": "#93000a", "surface-dim": "#111317", "on-tertiary-container": "#ffc18c", "outline-variant": "#4d4354", "on-secondary-fixed": "#1b1b1d", "on-primary-container": "#e4c0ff", "primary-fixed-dim": "#e0b6ff", "on-tertiary-fixed": "#2e1500", primary: "#e0b6ff", "on-error": "#690005", "secondary-container": "#474649", "tertiary-fixed-dim": "#ffb779", "on-surface-variant": "#d0c2d7", "on-primary-fixed": "#2d004f", "surface-container-high": "#282a2e", "surface-container-low": "#1a1c1f", "inverse-surface": "#e2e2e7", background: "#111317", "on-secondary-container": "#b6b4b7", "tertiary-fixed": "#ffdcc1", "surface-container-highest": "#333539", "on-tertiary-fixed-variant": "#6c3a00", "on-secondary": "#303032", "surface-tint": "#e0b6ff", "on-primary": "#4b007d"}, borderRadius: {DEFAULT: "1rem", lg: "2rem", xl: "3rem", full: "9999px"}, fontFamily: {headline: ["Manrope"], body: ["Inter"], label: ["Inter"], display: "Manrope"}}}};</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .message-glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+        }
+        body {
+            background-color: #f9f9fe;
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3 {
+            font-family: 'Manrope', sans-serif;
+        }
+    </style>
+<style>
+        body {
+          min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#f9f9fe]/80 dark:bg-gray-950/80 backdrop-blur-xl">
+<div class="flex justify-between items-center px-8 py-4 w-full">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="close-up portrait of a professional woman with a friendly smile, soft natural studio lighting, high-end photography style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_zFFMvclXrhxhECLMPf9cZApNvw0HNNZz70IlFidAZxlXb5LrXKMW32Ixk1gCZu-WU7O6kx_0LtYc71y6Kd8qPgZxCM1g5lXOyoBksTSqp5v2_5O-TjrjtRjzh0MTNvR_7aLMjAsW3X8JL4hM8CBRVwGBNzc9ZOwW3IofHWT42xZk-IMwye7v_qpYww3v1sfOLgRZ1hiGf3-_N42UW86IvSusmmcL41kIp7X-Zlz74m5LryUfDuyRHOMrdlATAjGLkd5sZOXW-smf"/>
+</div>
+<h1 class="font-manrope text-lg font-semibold tracking-tight text-[#820AD1]">Concierge</h1>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#820AD1] hover:opacity-80 transition-opacity cursor-pointer">notifications</span>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-48 px-6 max-w-2xl mx-auto min-h-screen flex flex-col">
+<!-- Date Indicator -->
+<div class="flex justify-center mb-8">
+<span class="text-secondary font-label text-[12px] tracking-widest uppercase">Hoje, 24 de Outubro</span>
+</div>
+<!-- Chat Conversation Area -->
+<div class="flex flex-col gap-8 flex-grow">
+<!-- AI Welcome Message -->
+<div class="flex flex-col items-start max-w-[85%] group">
+<div class="flex items-center gap-2 mb-2 ml-4">
+<span class="text-[10px] font-bold text-primary tracking-tighter uppercase">Agente AI</span>
+</div>
+<div class="bg-surface-container-low p-6 rounded-t-xl rounded-br-xl rounded-bl-[4px] shadow-sm">
+<p class="font-body text-on-surface leading-relaxed">
+                        Olá! Como posso ajudar com suas finanças hoje? Você pode me contar sobre seus gastos ou pedir um resumo das suas metas.
+                    </p>
+</div>
+</div>
+<!-- User Message -->
+<div class="flex flex-col items-end max-w-[85%] self-end">
+<div class="bg-gradient-to-br from-[#6200a0] to-[#820ad1] p-6 rounded-t-xl rounded-bl-xl rounded-br-[4px] text-white shadow-lg">
+<p class="font-body leading-relaxed">
+                        Gastei 50 reais com café hoje
+                    </p>
+</div>
+<span class="text-[10px] text-secondary mt-2 mr-4 font-label">14:32</span>
+</div>
+<!-- AI Response with Contextual Insight -->
+<div class="flex flex-col items-start max-w-[90%]">
+<div class="flex items-center gap-2 mb-2 ml-4">
+<span class="text-[10px] font-bold text-primary tracking-tighter uppercase">Agente AI</span>
+</div>
+<div class="bg-surface-container-low p-6 rounded-t-xl rounded-br-xl rounded-bl-[4px] shadow-sm border border-white/50">
+<p class="font-body text-on-surface leading-relaxed mb-4">
+                        Entendido! Registrei R$ 50 em <span class="font-semibold text-primary">Alimentação</span>. 
+                    </p>
+<!-- Insight Card (Editorial UI Pattern) -->
+<div class="bg-surface-container-lowest p-5 rounded-lg border border-outline-variant/10">
+<div class="flex items-center justify-between mb-3">
+<span class="text-sm font-semibold font-headline">Meta: Alimentação</span>
+<span class="text-sm font-bold text-primary">60%</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[60%]"></div>
+</div>
+<p class="mt-3 text-xs text-secondary leading-relaxed">
+                            Você já atingiu 60% do seu limite mensal nessa categoria. Restam R$ 320,00 para o período.
+                        </p>
+</div>
+</div>
+<span class="text-[10px] text-secondary mt-2 ml-4 font-label">14:32</span>
+</div>
+</div>
+</main>
+<!-- Bottom Input Area (Minimal) -->
+<div class="fixed bottom-32 left-0 w-full px-6 z-40">
+<div class="max-w-2xl mx-auto">
+<div class="bg-surface-container-high/90 backdrop-blur-xl rounded-full p-2 flex items-center shadow-[0_-4px_40px_rgba(26,28,31,0.06)]">
+<button class="w-12 h-12 flex items-center justify-center text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined">add_circle</span>
+</button>
+<input class="flex-grow bg-transparent border-none focus:ring-0 font-body text-on-surface px-2 placeholder:text-secondary/60" placeholder="Fale com seu concierge..." type="text"/>
+<button class="bg-gradient-to-br from-[#6200a0] to-[#820ad1] w-10 h-10 rounded-full flex items-center justify-center text-white shadow-md active:scale-90 transition-transform duration-300">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">arrow_upward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-8 left-1/2 -translate-x-1/2 w-[90%] max-w-md z-50 rounded-full bg-white/70 dark:bg-gray-900/70 backdrop-blur-2xl shadow-[0_8px_32px_rgba(26,28,31,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] flex justify-around items-center px-6 py-3">
+<a class="flex flex-col items-center justify-center text-gray-400 dark:text-gray-500 hover:text-[#820AD1] transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-inter text-[11px] font-medium tracking-tight">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#820AD1] dark:text-[#a347e0] scale-110 transition-transform active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">chat_bubble</span>
+<span class="font-inter text-[11px] font-medium tracking-tight">Agente</span>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-400 dark:text-gray-500 hover:text-[#820AD1] transition-colors" href="#">
+<span class="material-symbols-outlined">target</span>
+<span class="font-inter text-[11px] font-medium tracking-tight">Metas</span>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-400 dark:text-gray-500 hover:text-[#820AD1] transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-inter text-[11px] font-medium tracking-tight">Perfil</span>
+</a>
+</nav>
+<!-- Background Decorative Element (Organic Asymmetry) -->
+<div class="fixed -top-24 -right-24 w-96 h-96 bg-primary-fixed/20 rounded-full blur-[100px] pointer-events-none z-0"></div>
+<div class="fixed top-1/2 -left-48 w-80 h-80 bg-tertiary-fixed/10 rounded-full blur-[80px] pointer-events-none z-0"></div>
+</body></html>

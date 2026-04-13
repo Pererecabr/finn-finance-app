@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  password  String
+  salary    Float
+  onboardingDone Boolean  @default(false)
+  onboardingStep Int      @default(0)
+  geminiKey      String?
+  createdAt DateTime @default(now())
+  
+  transactions Transaction[]
+  goals        Goal[]
+  messages     ChatMessage[]
+}
+
+model Transaction {
+  id          String   @id @default(cuid())
+  amount      Float
+  description String
+  category    String
+  date        DateTime @default(now())
+  type        String   // "INCOME" or "EXPENSE"
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+}
+
+model Goal {
+  id           String   @id @default(cuid())
+  title        String
+  targetAmount Float
+  currentAmount Float   @default(0)
+  deadline     DateTime
+  userId       String
+  user         User     @relation(fields: [userId], references: [id])
+}
+
+model ChatMessage {
+  id        String   @id @default(cuid())
+  role      String   // "user" or "assistant"
+  content   String
+  createdAt DateTime @default(now())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+}

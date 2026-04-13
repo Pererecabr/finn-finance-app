@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html class="light dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bem-vindo ao Concierge</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"inverse-on-surface": "#2e3034", surface: "#111317", "primary-container": "#820ad1", "surface-container-lowest": "#0c0e12", error: "#ffb4ab", "surface-container": "#1e2023", "primary-fixed": "#f2daff", "secondary-fixed": "#e4e2e4", "on-surface": "#e2e2e7", "on-background": "#e2e2e7", "on-primary-fixed-variant": "#6b00af", "surface-bright": "#37393d", "tertiary-container": "#844800", secondary: "#c8c6c8", "on-error-container": "#ffdad6", "inverse-primary": "#8a1dd9", "on-secondary-fixed-variant": "#474649", tertiary: "#ffb779", outline: "#998ca0", "surface-variant": "#333539", "secondary-fixed-dim": "#c8c6c8", "on-tertiary": "#4c2700", "error-container": "#93000a", "surface-dim": "#111317", "on-tertiary-container": "#ffc18c", "outline-variant": "#4d4354", "on-secondary-fixed": "#1b1b1d", "on-primary-container": "#e4c0ff", "primary-fixed-dim": "#e0b6ff", "on-tertiary-fixed": "#2e1500", primary: "#e0b6ff", "on-error": "#690005", "secondary-container": "#474649", "tertiary-fixed-dim": "#ffb779", "on-surface-variant": "#d0c2d7", "on-primary-fixed": "#2d004f", "surface-container-high": "#282a2e", "surface-container-low": "#1a1c1f", "inverse-surface": "#e2e2e7", background: "#111317", "on-secondary-container": "#b6b4b7", "tertiary-fixed": "#ffdcc1", "surface-container-highest": "#333539", "on-tertiary-fixed-variant": "#6c3a00", "on-secondary": "#303032", "surface-tint": "#e0b6ff", "on-primary": "#4b007d"}, borderRadius: {DEFAULT: "1rem", lg: "2rem", xl: "3rem", full: "9999px"}, fontFamily: {headline: ["Manrope"], body: ["Inter"], label: ["Inter"], display: "Manrope"}}}};</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f9f9fe;
+            color: #1a1c1f;
+            -webkit-font-smoothing: antialiased;
+        }
+        .asymmetric-shape {
+            clip-path: circle(70% at 90% 10%);
+        }
+    </style>
+<style>
+        body {
+          min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body selection:bg-primary-fixed pb-24">
+<main class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-8">
+<div class="absolute top-0 right-0 w-full h-full z-0 opacity-20 md:opacity-30">
+<div class="asymmetric-shape absolute -top-20 -right-20 w-[600px] h-[600px] bg-gradient-to-br from-primary-container to-surface-bright rounded-full blur-[100px]"></div>
+<div class="absolute -bottom-40 -left-20 w-[400px] h-[400px] bg-gradient-to-tr from-secondary-fixed to-surface-container-low rounded-full blur-[80px]"></div>
+</div>
+<section class="relative z-10 w-full max-w-2xl flex flex-col items-center text-center py-12">
+<div class="mb-12 flex justify-center">
+<div class="w-24 h-24 rounded-xl bg-surface-container-lowest flex items-center justify-center shadow-2xl shadow-primary/5">
+<span class="material-symbols-outlined text-5xl text-primary" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+</div>
+<h1 class="font-headline text-[3.5rem] md:text-[4.5rem] leading-[1.1] font-extrabold tracking-tight text-on-surface mb-8">
+                        Finanças, em uma <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-container">conversa.</span>
+</h1>
+<div class="max-w-md mx-auto space-y-6 mb-16">
+<p class="text-secondary text-lg md:text-xl leading-relaxed">
+                Esqueça planilhas complexas. Bem-vindo ao <span class="font-semibold text-on-surface">Concierge</span>, seu assistente pessoal que entende seu dinheiro como ninguém.
+            </p>
+<div class="h-1 w-12 bg-outline-variant/30 mx-auto rounded-full"></div>
+</div>
+<div class="w-full flex flex-col sm:flex-row items-center justify-center gap-6">
+<button class="group relative w-full sm:w-auto px-12 py-5 bg-gradient-to-br from-primary to-primary-container text-white font-headline font-bold text-lg rounded-full overflow-hidden transition-all duration-300 hover:scale-[1.02] active:scale-95 shadow-lg shadow-primary/20">
+<span class="relative z-10">Começar</span>
+<div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</button>
+</div>
+<div class="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8 text-left w-full mb-12">
+<div class="p-8 rounded-xl bg-surface-container-low/50 backdrop-blur-sm">
+<span class="material-symbols-outlined text-primary mb-4 block" data-icon="forum">forum</span>
+<h3 class="font-headline font-bold text-on-surface mb-2">Interface Humana</h3>
+<p class="text-secondary text-sm leading-relaxed">Gerencie seu saldo apenas conversando com nossa IA inteligente.</p>
+</div>
+<div class="p-8 rounded-xl bg-surface-container-low/50 backdrop-blur-sm">
+<span class="material-symbols-outlined text-primary mb-4 block" data-icon="shield_with_heart" style="font-variation-settings: 'FILL' 1;">shield_with_heart</span>
+<h3 class="font-headline font-bold text-on-surface mb-2">Sua Paz Mental</h3>
+<p class="text-secondary text-sm leading-relaxed">Privacidade e segurança de nível bancário em cada transação.</p>
+</div>
+<div class="p-8 rounded-xl bg-surface-container-low/50 backdrop-blur-sm">
+<span class="material-symbols-outlined text-primary mb-4 block" data-icon="insights">insights</span>
+<h3 class="font-headline font-bold text-on-surface mb-2">Visão Editorial</h3>
+<p class="text-secondary text-sm leading-relaxed">Insights financeiros curados como uma revista premium.</p>
+</div>
+</div>
+</section>
+<!-- Bottom Navigation Bar as per COMPONENTS_7 -->
+<nav class="fixed bottom-8 left-1/2 -translate-x-1/2 w-[90%] max-w-md z-50 rounded-full bg-white/70 dark:bg-gray-900/70 backdrop-blur-2xl shadow-[0_8px_32px_rgba(26,28,31,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] tonal-transition border border-white/20">
+<div class="flex justify-around items-center px-6 py-3">
+<a class="flex flex-col items-center justify-center text-[#820AD1] dark:text-[#a347e0] scale-110 transition-transform duration-200 active:scale-90" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-inter text-[11px] font-medium tracking-tight mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-400 dark:text-gray-500 hover:text-[#820AD1] transition-colors duration-200 active:scale-90" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="font-inter text-[11px] font-medium tracking-tight mt-1">Agente</span>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-400 dark:text-gray-500 hover:text-[#820AD1] transition-colors duration-200 active:scale-90" href="#">
+<span class="material-symbols-outlined">target</span>
+<span class="font-inter text-[11px] font-medium tracking-tight mt-1">Metas</span>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-400 dark:text-gray-500 hover:text-[#820AD1] transition-colors duration-200 active:scale-90" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-inter text-[11px] font-medium tracking-tight mt-1">Perfil</span>
+</a>
+</div>
+</nav>
+<footer class="w-full px-8 pb-12 flex justify-between items-center text-secondary/40 text-[10px] uppercase tracking-[0.2em] font-medium z-10">
+<span>© 2024 CONCIERGE FINANCE</span>
+<div class="flex gap-4">
+<span>TERMOS</span>
+<span>PRIVACIDADE</span>
+</div>
+</footer>
+</main>
+<div class="fixed inset-0 pointer-events-none z-[100] border-[24px] border-surface pointer-events-none hidden md:block"></div>
+</body></html>
