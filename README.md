@@ -22,19 +22,18 @@ O projeto resolve um problema real: a maioria das pessoas abandona apps de contr
 | 💡 Dicas da Fina | Recomendações de economia baseadas no seu histórico |
 | 📊 Relatórios inline | Gráficos e resumos gerados direto na conversa |
 | 🧭 Onboarding conversacional | Configuração inicial guiada pela Fina, sem formulários |
+| 🔑 Chave de IA própria | Cada usuário usa sua própria chave gratuita do Google AI Studio |
 
 ---
 
 ## Stack
 
 ```
-Frontend   Next.js 14 (App Router) + TypeScript + Tailwind CSS + Recharts
+Frontend   Next.js 15 (App Router) + TypeScript + Tailwind CSS
 Backend    Node.js + Fastify + Prisma ORM
-Banco      PostgreSQL
-Cache      Redis
-IA         Anthropic Claude API (claude-sonnet-4-20250514) — tool use
-Auth       NextAuth.js v5 (e-mail + Google OAuth)
-Deploy     Vercel (frontend) · Railway (backend + banco + cache)
+Banco      SQLite (local, via Prisma)
+IA         Google Gemini 2.0 Flash (chave pessoal, gratuita via Google AI Studio)
+Auth       JWT + Cookies HttpOnly (bcryptjs)
 ```
 
 ---
@@ -44,40 +43,58 @@ Deploy     Vercel (frontend) · Railway (backend + banco + cache)
 ```
 Browser (Next.js SPA)
         │
-        │ HTTPS / REST
+        │ HTTP / REST + Cookies
         ▼
 API Fastify
-   ├── Orquestra chamadas ao Claude API
-   ├── Persiste transações, metas e histórico de chat
-   └── Aplica regras de negócio e rate limiting
+   ├── Autentica usuário via JWT em cookie
+   ├── Instancia Gemini com a chave do usuário logado
+   ├── Persiste transações, metas e histórico de chat (SQLite)
+   └── Aplica regras de negócio
         │
-        ├──▶ PostgreSQL (dados do usuário)
-        └──▶ Anthropic Claude API (NLP + Agente Fina)
+        ├──▶ SQLite / Prisma (dados do usuário)
+        └──▶ Google Gemini API (NLP + Agente Fina)
 ```
 
 ---
 
 ## Como funciona a Fina
 
-A Fina é implementada com **system prompt + tool use** da Claude API. Ela recebe cada mensagem do usuário junto com contexto real da conta (saldo do mês, metas ativas, últimas transações) e pode executar três ações estruturadas:
+A Fina é implementada com **system prompt + function calling** do Google Gemini. Ela recebe cada mensagem do usuário junto com contexto real da conta (saldo do mês, metas ativas, últimas transações) e pode executar quatro ações estruturadas:
 
-- `register_transaction` — salva um gasto ou receita
-- `manage_goal` — cria ou atualiza uma meta
-- `render_widget` — solicita ao frontend um gráfico ou card de dados
+| Ferramenta | Descrição |
+|---|---|
+| `register_transaction` | Salva um gasto ou receita |
+| `manage_goal` | Cria ou atualiza uma meta financeira |
+| `render_widget` | Solicita ao frontend um gráfico ou card de dados |
+| `complete_onboarding` | Finaliza o processo de boas-vindas |
 
 O histórico das últimas 20 mensagens é injetado em cada chamada para manter contexto da conversa.
+
+---
+
+## Modelo de Chave de IA
+
+> Cada usuário insere **sua própria chave gratuita** do Google AI Studio. A chave é armazenada com segurança no banco de dados local e nunca é compartilhada com terceiros.
+
+O acesso ao dashboard é **bloqueado** até que o usuário configure sua chave na página de Perfil. Isso garante:
+- Custo zero para o operador do sistema
+- Privacidade total dos dados de IA
+- Controle individual de uso e cotas
+
+**Como obter a chave (grátis):** [aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
 
 ---
 
 ## Estrutura do Repositório
 
 ```
-finanas-em-conversa/
+finn-finance-app/
 ├── apps/
 │   ├── web/          # Next.js — interface de chat e visualizações
 │   └── api/          # Fastify — endpoints REST e orquestração da IA
-└── packages/
-    └── shared/       # Tipos TypeScript compartilhados entre apps
+├── PRD.md            # Requisitos de produto
+├── SPEC.md           # Especificação técnica
+└── README.md
 ```
 
 ---
@@ -86,53 +103,64 @@ finanas-em-conversa/
 
 ### Pré-requisitos
 
-- Node.js 20+
-- PostgreSQL 15+
-- Redis 7+
-- Chave de API da Anthropic
-- Credenciais OAuth do Google (opcional)
+- Node.js 18+
+- npm
+- Conta no [Google AI Studio](https://aistudio.google.com) (gratuito)
 
-### Instalação
+### 1. Backend (API)
 
 ```bash
-# Clone o repositório
-git clone https://github.com/seu-usuario/financas-em-conversa
-cd financas-em-conversa
-
-# Instale dependências
+cd apps/api
 npm install
 
 # Configure as variáveis de ambiente
-cp apps/api/.env.example apps/api/.env
-cp apps/web/.env.example apps/web/.env
-# Edite os arquivos .env com suas credenciais
+echo 'DATABASE_URL="file:./dev.db"' >> .env
+echo 'JWT_SECRET="troque-por-um-segredo-seguro"' >> .env
 
-# Execute as migrações do banco
-cd apps/api
-npx prisma migrate dev
+# Crie o banco de dados
+npx prisma db push
 
-# Inicie em modo desenvolvimento
-npm run dev  # na raiz — sobe frontend e backend simultaneamente
+# Inicie o servidor
+npm run dev
 ```
 
-### Variáveis de Ambiente
+### 2. Frontend (Web)
 
-**`apps/api/.env`**
+```bash
+cd apps/web
+npm install
+npm run dev
+```
+
+### Acesso
+
+- **Frontend:** http://localhost:3000
+- **API:** http://localhost:3001
+
+### Variáveis de Ambiente (`apps/api/.env`)
+
 ```env
-DATABASE_URL=postgresql://usuario:senha@localhost:5432/financas
-ANTHROPIC_API_KEY=sk-ant-...
-REDIS_URL=redis://localhost:6379
-JWT_SECRET=seu-secret-aqui
-NEXTAUTH_SECRET=seu-nextauth-secret
+DATABASE_URL="file:./dev.db"
+JWT_SECRET="seu-segredo-jwt-aqui"
 ```
 
-**`apps/web/.env`**
-```env
-NEXT_PUBLIC_API_URL=http://localhost:3001
-NEXTAUTH_URL=http://localhost:3000
-GOOGLE_CLIENT_ID=...
-GOOGLE_CLIENT_SECRET=...
-```
+> **Importante:** A chave do Google Gemini **não é uma variável de ambiente do servidor**. Cada usuário insere a própria chave na página de Perfil do app após fazer login.
+
+---
+
+## Roadmap
+
+- [x] Autenticação segura (e-mail + senha, JWT em cookie)
+- [x] Chat funcional com registro de transações via linguagem natural
+- [x] Metas financeiras e acompanhamento
+- [x] Onboarding conversacional guiado pela Fina
+- [x] Integração com Google Gemini (gratuito, chave por usuário)
+- [x] Tema dourado (identidade visual de prosperidade)
+- [x] Botão de limpar histórico de conversa
+- [ ] Widgets de visualização inline (gráficos no chat)
+- [ ] Upload de foto de perfil
+- [ ] Deploy em produção (Vercel + Railway)
+- [ ] Integrações futuras: Open Finance, notificações, app mobile
 
 ---
 
@@ -141,21 +169,7 @@ GOOGLE_CLIENT_SECRET=...
 | Documento | Descrição |
 |---|---|
 | [`PRD.md`](./PRD.md) | Requisitos de produto, personas, funcionalidades e métricas |
-| [`SPEC.md`](./SPEC.md) | Especificação técnica completa: schema, endpoints, prompts e plano de dev |
-
----
-
-## Roadmap
-
-- [x] PRD e SPEC definidos
-- [ ] Setup do monorepo e banco de dados
-- [ ] Autenticação (e-mail + Google)
-- [ ] Chat funcional com registro de transações
-- [ ] Metas financeiras e acompanhamento
-- [ ] Widgets de visualização inline
-- [ ] Onboarding conversacional
-- [ ] Deploy em produção
-- [ ] Integrações futuras: Open Finance, notificações, app mobile
+| [`SPEC.md`](./SPEC.md) | Especificação técnica: schema, endpoints e prompts |
 
 ---
 

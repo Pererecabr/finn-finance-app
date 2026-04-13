@@ -144,10 +144,10 @@ Onboarding pode ser pulado e retomado a qualquer momento.
 
 ### 4.7 Autenticação e Gestão de Conta (P0 — Essencial)
 
-- Cadastro via e-mail e senha ou Google OAuth.
-- Recuperação de senha por e-mail.
-- Perfil básico editável (nome, moeda preferida — padrão BRL).
-- Exclusão de conta com confirmação.
+- Cadastro via e-mail e senha.
+  - Login seguro com JWT em cookie HttpOnly.
+  - Perfil editável (nome, salário, chave de API Gemini).
+  - Exclusão de conta com confirmação.
 
 ---
 
@@ -215,10 +215,11 @@ Digitar objetivo no chat → Fina confirma e detalha meta → Acompanhamento aut
 
 ## 9. Premissas e Dependências
 
-- A IA de processamento de linguagem natural será fornecida via **Anthropic Claude API**.
-- O produto será desenvolvido com auxílio de ferramentas de geração de código por IA.
-- O MVP será uma aplicação web responsiva (não app nativo).
-- Os dados financeiros dos usuários não serão usados para treinar modelos de IA de terceiros.
+- A IA de processamento de linguagem natural é fornecida via **Google Gemini API** (modelo `gemini-2.0-flash`), utilizando a chave pessoal de cada usuário obtida gratuitamente no Google AI Studio.
+- Cada usuário é responsável por configurar e manter sua própria chave de API.
+- O produto foi desenvolvido com auxílio de ferramentas de geração de código por IA.
+- O MVP é uma aplicação web responsiva (não app nativo).
+- Os dados financeiros dos usuários não são usados para treinar modelos de IA de terceiros.
 
 ---
 
@@ -228,7 +229,7 @@ Digitar objetivo no chat → Fina confirma e detalha meta → Acompanhamento aut
 |---|---|---|---|
 | Baixa precisão da classificação automática | Média | Alto | Confirmação antes de salvar; feedback do usuário treina o sistema |
 | Usuários hesitarem em compartilhar dados financeiros | Alta | Alto | Comunicação clara de privacidade; LGPD; sem integração bancária no MVP |
-| Custo da API de IA ultrapassar projeção | Média | Médio | Limite de chamadas por usuário gratuito; cache de respostas padrão |
+| Custo da API de IA ultrapassar projeção | Baixa | Baixo | Cada usuário usa sua própria chave gratuita do Google AI Studio; custo operacional zero |
 | Abandono após onboarding | Média | Alto | Onboarding curto e opcional; primeira transação em menos de 60 segundos |
 
 ---
