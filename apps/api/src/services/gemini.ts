@@ -9,8 +9,10 @@ export class GeminiService {
     if (!user) throw new Error('User not found');
     if (!user.geminiKey) throw new Error('Google Gemini API Key não configurada no perfil.');
 
-    // Initialize Gemini with user's specific key
-    const genAI = new GoogleGenerativeAI(user.geminiKey);
+    // Initialize Gemini with user's specific key (trim whitespace to avoid invalid key errors)
+    const geminiKey = user.geminiKey.trim();
+    if (!geminiKey) throw new Error('Google Gemini API Key está em branco.');
+    const genAI = new GoogleGenerativeAI(geminiKey);
     const model = genAI.getGenerativeModel({ 
       model: 'gemini-2.0-flash',
       tools: [{ functionDeclarations: FINA_TOOLS }],

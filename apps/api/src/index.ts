@@ -88,7 +88,11 @@ server.patch('/api/me', {
 
   const user = await prisma.user.update({
     where: { id: userId },
-    data: parsed.data
+    data: {
+      ...parsed.data,
+      // Trim API key to prevent whitespace issues from paste
+      ...(parsed.data.geminiKey ? { geminiKey: parsed.data.geminiKey.trim() } : {})
+    }
   });
 
   return { success: true, user: { id: user.id, name: user.name, email: user.email } };

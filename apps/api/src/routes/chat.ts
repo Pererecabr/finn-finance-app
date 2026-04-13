@@ -88,6 +88,15 @@ export async function chatRoutes(server: FastifyInstance) {
     return messages;
   });
 
+  // Clear chat history
+  server.delete('/history', async (request, reply) => {
+    const { userId } = (request as any).user;
+
+    await prisma.chatMessage.deleteMany({ where: { userId } });
+
+    return { success: true };
+  });
+
   // Confirm a tool call (e.g. register transaction)
   server.post('/confirm-tool', async (request, reply) => {
     const { userId } = (request as any).user;
